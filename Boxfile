@@ -1,0 +1,9 @@
+web1: #component type & number
+  name: PhillipEpstein.com
+  document_root: public/
+  php_version: 5.3.8
+  php_extensions:
+  - mcrypt
+  - mysqli
+  - mbstring
+  - mysql
