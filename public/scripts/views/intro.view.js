@@ -21,34 +21,33 @@ App.View.Intro = Backbone.View.extend({
 		var queue = [
 		//What
 			{
-				actor: r.print(canvasW/8, canvasH/2, "WHAT", r.getFont("Proxima Nova Rg"), 400)
-					.attr({ 'Set text-anchor':'middle', title: 'what', opacity: 1 }),
+				actor: r.print(200,400, "WHAT", r.getFont("Proxima Nova Rg"), 400)
+					.attr({ 'text-anchor':'start', title: 'what', opacity: 0 }),
 				pause: 1000
 			},
 			{
-				camera: function(){that.moveCam({ y:-150, z:.5 }, cam)}
+				camera: function(){that.moveCam({y:-150,  z:.5 }, cam)}
 				
 			},
 		//does
 			{
 				actor: r.print(canvasW/8, canvasH/2, "does", r.getFont("Proxima Nova Rg"), 1000)
-					.attr({ 'Set text-anchor':'middle', title: 'does', opacity: 1 })
-					.attr({ transform: 'T -650, 400' }),
+					.attr({ 'text-anchor':'start', title: 'does', opacity: 0 }),
+					//.attr({ transform: 't -10, 200' }),
 				pause: 1000
 			},
 			{
-				//camera: function(){that.moveCam({ y:-150, z:.5 }, cam)}
+				camera: function(){that.moveCam({y:-150, z:.5 }, cam)}
 				
 			},
 			
-		// //Phillip
-			// {
-				// actor: function(){
-					// return r.print(canvasW/8, canvasH/2, "Phillip", r.getFont("Proxima Nova Rg"), 400)
-					// .attr({ 'font-size': 2000, 'Set text-anchor':'middle', title: 'phillip' });
-				// },
-				// pause: 1000
-			// },
+		//Phillip
+			{
+				actor: r.print(canvasW/8, canvasH/2, "Phillip", r.getFont("Proxima Nova Rg"), 1000 )
+					.attr({ 'Set text-anchor':'middle', title: 'phillip', opacity: 0 }),
+					//.attr({ transform: 'T -600, 500' }),
+				pause: 1000
+			},
 			
 		];
 		
@@ -89,8 +88,8 @@ App.View.Intro = Backbone.View.extend({
 		args = _.extend(defaults, args);
 		cam.forEach(function(scene){
 			var prevTransform = scene.attr('transform').join(', ');
-			var multiplierY = -args.y 
-			var transform = '{3}t, {0}, {1}, s, {2}'.supplant([args.x, args.y - multiplierY, args.z, prevTransform ? prevTransform + ', ' : '']);
+			// var transform = '{3}t, {0}, {1}, s, {2},{2}, {4},{5} '.supplant([args.x, args.y, args.z, prevTransform ? prevTransform + ', ' : '',window.innerWidth/2,window.innerHeight/2]);
+			var transform = '{3}t, {0}, {1}, s, {2} '.supplant([args.x, args.y, args.z, prevTransform ? prevTransform + ', ' : '',window.innerWidth/2,window.innerHeight/2]);
 			scene.animate(
 				{transform: transform},
 				args.ms, 
@@ -100,20 +99,5 @@ App.View.Intro = Backbone.View.extend({
 		})
 		
 		
-	},
-	
-	whatAnim: function(callback){
-		var r =this.r;
-		var what = r.print(this.canvasW/8, this.canvasH/2, "WHAT", r.getFont("Proxima Nova Rg"), 400)
-			.attr({ 'font-size': 500, 'Set text-anchor':'middle' });
-		this.cam.push(what);
-	},
-	
-	doesAnim: function(callback){
-		var r =this.r;
-		var does = r.print(this.canvasW/8 -50, (this.canvasH/2), "does", r.getFont("Proxima Nova Rg"), 400)
-			.attr({ 'font-size': 500, 'Set text-anchor':'middle' });
-		this.cam.push(does);
-		callback();
 	},
 });
