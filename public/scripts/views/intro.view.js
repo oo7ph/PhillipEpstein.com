@@ -21,34 +21,55 @@ App.View.Intro = Backbone.View.extend({
 		var queue = [
 		//What
 			{
-				actor: r.print(200,400, "WHAT", r.getFont("Proxima Nova Rg"), 400)
+				actor: r.print(canvasW/8,canvasH/2, "WHAT", r.getFont("Proxima Nova Rg"), 400)
 					.attr({ 'text-anchor':'start', title: 'what', opacity: 0 }),
 				pause: 1000
 			},
 			{
-				camera: function(){that.moveCam({y:-150,  z:.5 }, cam)}
+				camera: function(){that.moveCam({y:-500,  z:.5 }, cam)}
 				
 			},
 		//does
 			{
-				actor: r.print(canvasW/8, canvasH/2, "does", r.getFont("Proxima Nova Rg"), 1000)
+				actor: r.print(-400, 850, "does", r.getFont("Proxima Nova Rg"), 1000)
 					.attr({ 'text-anchor':'start', title: 'does', opacity: 0 }),
 					//.attr({ transform: 't -10, 200' }),
 				pause: 1000
 			},
 			{
-				camera: function(){that.moveCam({y:-150, z:.5 }, cam)}
+				camera: function(){that.moveCam({ x: -4500, z:.15 }, cam)}
 				
 			},
 			
-		//Phillip
+		// //Phillip
 			{
-				actor: r.print(canvasW/8, canvasH/2, "Phillip", r.getFont("Proxima Nova Rg"), 1000 )
+				actor: r.print(2000, 850, "Phillip", r.getFont("Proxima Nova Rg"), 1000 )
+					.attr({ 'Set text-anchor':'middle', title: 'phillip', opacity: 0 }),
+					//.attr({ transform: 'T -600, 500' }),
+				pause: 500
+			},
+			//Epstein
+			{
+				actor: r.print(5000, 850, "Epstein", r.getFont("Proxima Nova Rg"), 1000 )
 					.attr({ 'Set text-anchor':'middle', title: 'phillip', opacity: 0 }),
 					//.attr({ transform: 'T -600, 500' }),
 				pause: 1000
 			},
-			
+			//Phillip
+			{
+				actor: r.print(5000, 2000, "LOOK", r.getFont("Proxima Nova Rg"), 1000 )
+					.attr({ 'Set text-anchor':'middle', title: 'phillip', opacity: 0 }),
+					//.attr({ transform: 'T -600, 500' }),
+				pause: 500
+			},
+			//Epstein
+			{
+				actor: r.print(8000, 2000, "LIKE?", r.getFont("Proxima Nova Rg"), 1000 )
+					.attr({ 'Set text-anchor':'middle', title: 'phillip', opacity: 0 }),
+					//.attr({ transform: 'T -600, 500' }),
+				pause: 1000
+			},
+// 			
 		];
 		
 		queue.forEach(function(scene){
@@ -89,7 +110,7 @@ App.View.Intro = Backbone.View.extend({
 		cam.forEach(function(scene){
 			var prevTransform = scene.attr('transform').join(', ');
 			// var transform = '{3}t, {0}, {1}, s, {2},{2}, {4},{5} '.supplant([args.x, args.y, args.z, prevTransform ? prevTransform + ', ' : '',window.innerWidth/2,window.innerHeight/2]);
-			var transform = '{3}t, {0}, {1}, s, {2} '.supplant([args.x, args.y, args.z, prevTransform ? prevTransform + ', ' : '',window.innerWidth/2,window.innerHeight/2]);
+			var transform = '{s, {2}, {2}, {4}, {5}, t, {0}, {1},'.supplant([args.x, args.y, args.z, prevTransform ? prevTransform + ', ' : '',window.innerWidth/2,window.innerHeight/2]);
 			scene.animate(
 				{transform: transform},
 				args.ms, 
