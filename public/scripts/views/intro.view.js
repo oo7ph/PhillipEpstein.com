@@ -2,7 +2,9 @@ App.View.Intro = Backbone.View.extend({
 	
 	build: function(){
 		var that = this;
-		return ['.intro', { render: that.renderIntro.bind(this) }];
+		return ['.intro', { render: that.renderIntro.bind(this) },[
+			['audio', { src:'/assets/WhatDoes.mp3', autoplay:'null'} ]
+		]];
 	},
 	
 	renderIntro: function (el) {
@@ -23,7 +25,7 @@ App.View.Intro = Backbone.View.extend({
 			{
 				actor: r.print(canvasW/8,canvasH/2, "WHAT", r.getFont("Proxima Nova Rg"), 400)
 					.attr({ 'text-anchor':'start', title: 'what', opacity: 0 }),
-				pause: 1000
+				pause: 200
 			},
 			{
 				camera: function(){that.moveCam({y:-500,  z:.5 }, cam)}
@@ -34,7 +36,7 @@ App.View.Intro = Backbone.View.extend({
 				actor: r.print(-400, 850, "does", r.getFont("Proxima Nova Rg"), 1000)
 					.attr({ 'text-anchor':'start', title: 'does', opacity: 0 }),
 					//.attr({ transform: 't -10, 200' }),
-				pause: 1000
+				pause: 200
 			},
 			{
 				camera: function(){that.moveCam({ x: -4500, z:.15 }, cam)}
@@ -96,7 +98,10 @@ App.View.Intro = Backbone.View.extend({
 			}, pause);	
 		};
 		
-		run();
+		audiojs.events.ready(function() {
+	    	var as = audiojs.createAll();
+	    	run();
+	 	 });
 	},
 	
 	moveCam: function(args, cam){
