@@ -1,15 +1,56 @@
 body
     margin 0
+    background #4B4B4B url(/assets/paperBg.jpg)
+    font-size 16px
+    line-height 1.4
+    font-family ProximaNovaRgRegular
+    
+@font-face
+	font-family 'ProximaNovaRgRegular'
+	src url('/assets/fonts/proximanova-regular-webfont.eot')
+	src url('/assets/fonts/proximanova-regular-webfont.eot?#iefix') format('embedded-opentype'),url('/assets/fonts/proximanova-regular-webfont.woff'),url('/assets/fonts/proximanova-regular-webfont.ttf') format('truetype'),url('/assets/fonts/proximanova-regular-webfont.svg#ProximaNovaRgRegular') format('svg');
+	font-weight normal
+	font-style normal
     
 .audiojs
     display none
 
+.myself
+	display none
+	.intro 
+		font-weight bold
+
+.button
+	padding 2px 10px
+	background #6B6969
+	height 28px
+	color white
+	font-size 18px
+
+.button-section > a
+	margin 10px 10px
+
 .nav
     float left
-    height 500px
+    height 400px
     border-left solid
     display none
+    position relative
+    list-style-type none
+    font-size 22px
+    ol
+    	position absolute
+    	bottom 0
+    	list-style-type: none;
+    	padding 0
+    	margin 0
+
+		li.current
+			margin 0
+			background black
+			color white
+    	
 
 .main-content
     float left
-    margin: 0 auto
+    margin: 50px auto

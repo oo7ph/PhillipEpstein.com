@@ -1,16 +1,58 @@
 body {
   margin: 0;
+  background: #4b4b4b url("/assets/paperBg.jpg");
+  font-size: 16px;
+  line-height: 1.4;
+  font-family: ProximaNovaRgRegular;
+}
+@font-face {
+  font-family: 'ProximaNovaRgRegular';
+  src: url("/assets/fonts/proximanova-regular-webfont.eot");
+  src: url("/assets/fonts/proximanova-regular-webfont.eot?#iefix") format('embedded-opentype'), url("/assets/fonts/proximanova-regular-webfont.woff"), url("/assets/fonts/proximanova-regular-webfont.ttf") format('truetype'), url("/assets/fonts/proximanova-regular-webfont.svg#ProximaNovaRgRegular") format('svg');
+  font-weight: normal;
+  font-style: normal;
 }
 .audiojs {
   display: none;
 }
+.myself {
+  display: none;
+}
+.myself .intro {
+  font-weight: bold;
+}
+.button {
+  padding: 2px 10px;
+  background: #6b6969;
+  height: 28px;
+  color: #fff;
+  font-size: 18px;
+}
+.button-section > a {
+  margin: 10px 10px;
+}
 .nav {
   float: left;
-  height: 500px;
+  height: 400px;
   border-left: solid;
   display: none;
+  position: relative;
+  list-style-type: none;
+  font-size: 22px;
+}
+.nav ol {
+  position: absolute;
+  bottom: 0;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+li.current {
+  margin: 0;
+  background: #000;
+  color: #fff;
 }
 .main-content {
   float: left;
-  margin: 0 auto;
+  margin: 50px auto;
 }
