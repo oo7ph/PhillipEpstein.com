@@ -71,12 +71,18 @@ App.View.Intro = Backbone.View.extend({
 					//.attr({ transform: 'T -600, 500' }),
 				pause: 1000
 			},
+			{
+				camera: function(){
+					that.moveCam({ scaleX:25, scaleY:25, z:.04 }, cam);
+					$('svg', that.el).height('125px');
+				}
+				
+			},
 // 			
 		];
 		
 		queue.forEach(function(scene){
 			if(scene.actor){
-				console.log('Loaded: '+scene.actor.attr('title'));
 				cam.push(scene.actor);
 			}
 		});
@@ -110,18 +116,19 @@ App.View.Intro = Backbone.View.extend({
 			y: 0,
 			z: 1,
 			ms: 100,
+			scaleX: window.innerWidth/2,
+			scaleY: window.innerHeight/2
 		};
 		args = _.extend(defaults, args);
 		cam.forEach(function(scene){
 			var prevTransform = scene.attr('transform').join(', ');
 			// var transform = '{3}t, {0}, {1}, s, {2},{2}, {4},{5} '.supplant([args.x, args.y, args.z, prevTransform ? prevTransform + ', ' : '',window.innerWidth/2,window.innerHeight/2]);
-			var transform = '{s, {2}, {2}, {4}, {5}, t, {0}, {1},'.supplant([args.x, args.y, args.z, prevTransform ? prevTransform + ', ' : '',window.innerWidth/2,window.innerHeight/2]);
+			var transform = '{s, {2}, {2}, {4}, {5}, t, {0}, {1},'.supplant([args.x, args.y, args.z, prevTransform ? prevTransform + ', ' : '', args.scaleX, args.scaleY]);
 			scene.animate(
 				{transform: transform},
 				args.ms, 
 				'<>'
 			);
-			console.log(scene.attr('title'), 'before: ' + scene.attr('transform').join(', '), 'after: '+ transform);
 		})
 		
 		

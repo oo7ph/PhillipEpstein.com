@@ -9,6 +9,11 @@ App.View.Dashboard = Backbone.View.extend({
 	},
 	
 	build: function(){
-		return new App.View.Intro();
+		return ['fragment', [
+			new App.View.Intro(),
+			['.main-content',[
+			
+			]]
+		]]
 	},
 });
