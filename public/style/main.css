@@ -1,11 +1,16 @@
+body {
+  margin: 0;
+}
 .audiojs {
   display: none;
 }
-.main-content {
-  margin: 0 auto;
-  width: 910px;
+.nav {
+  float: left;
   height: 500px;
+  border-left: solid;
+  display: none;
 }
-.intro {
-  margin: 0px auto 0px auto;
+.main-content {
+  float: left;
+  margin: 0 auto;
 }
