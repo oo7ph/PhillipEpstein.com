@@ -14,11 +14,6 @@ App.View.Intro = Backbone.View.extend({
 		r = Raphael(el, canvasW, canvasH);
 		cam = r.set();	
 		initCamSettings = { transform: 's 1' };
-		// var does = r.print(50, 50, "does", r.getFont("Proxima Nova Rg"), 40);
-		// var phillip = r.print(50, 50, "Phillip", r.getFont("Proxima Nova Rg"), 40);
-		// var epstein = r.print(50, 50, "Epstein", r.getFont("Proxima Nova Rg"), 40);
-		// var look = r.print(50, 50, "LOOK", r.getFont("Proxima Nova Rg"), 40);
-		// var like = r.print(50, 50, "LIKE?", r.getFont("Proxima Nova Rg"), 40);
 		
 		var queue = [
 		//What
@@ -38,47 +33,51 @@ App.View.Intro = Backbone.View.extend({
 					//.attr({ transform: 't -10, 200' }),
 				pause: 200
 			},
-			{
-				camera: function(){that.moveCam({ x: -4500, z:.15 }, cam)}
-				
-			},
+			// {
+				// actor: r.rect(-1500, 0, 1000, '10000')
+				// .attr({fill:'black'}),
+				// pause: 200
+			// },
+			 {
+				 camera: function(){that.moveCam({ x: -4500, z:.15 }, cam)}
+ 				
+			 },
 			
-		// //Phillip
-			{
-				actor: r.print(2000, 850, "Phillip", r.getFont("Proxima Nova Rg"), 1000 )
-					.attr({ 'Set text-anchor':'middle', title: 'phillip', opacity: 0 }),
-					//.attr({ transform: 'T -600, 500' }),
-				pause: 500
-			},
-			//Epstein
-			{
-				actor: r.print(5000, 850, "Epstein", r.getFont("Proxima Nova Rg"), 1000 )
-					.attr({ 'Set text-anchor':'middle', title: 'phillip', opacity: 0 }),
-					//.attr({ transform: 'T -600, 500' }),
-				pause: 1000
-			},
-			//Phillip
-			{
-				actor: r.print(5000, 2000, "LOOK", r.getFont("Proxima Nova Rg"), 1000 )
-					.attr({ 'Set text-anchor':'middle', title: 'phillip', opacity: 0 }),
-					//.attr({ transform: 'T -600, 500' }),
-				pause: 500
-			},
-			//Epstein
-			{
-				actor: r.print(8000, 2000, "LIKE?", r.getFont("Proxima Nova Rg"), 1000 )
-					.attr({ 'Set text-anchor':'middle', title: 'phillip', opacity: 0 }),
-					//.attr({ transform: 'T -600, 500' }),
-				pause: 1000
-			},
-			{
-				camera: function(){
-					that.moveCam({ scaleX:25, scaleY:25, z:.04 }, cam);
-					$('svg', that.el).height('125px');
-				}
-				
-			},
-// 			
+		  //Phillip
+			 {
+				 actor: r.print(2000, 850, "Phillip", r.getFont("Proxima Nova Rg"), 1000 )
+					 .attr({ 'Set text-anchor':'middle', title: 'phillip', opacity: 0 }),
+				 pause: 500
+			 },
+			// Epstein
+			 {
+				 actor: r.print(5000, 850, "Epstein", r.getFont("Proxima Nova Rg"), 1000 )
+					 .attr({ 'Set text-anchor':'middle', title: 'phillip', opacity: 0 }),
+				 pause: 1000
+			 },
+			// Phillip
+			 {
+				 actor: r.print(5000, 2000, "LOOK", r.getFont("Proxima Nova Rg"), 1000 )
+					 .attr({ 'Set text-anchor':'middle', title: 'phillip', opacity: 0 }),
+				 pause: 500
+			 },
+			 // Epstein
+			 {
+				 actor: r.print(8000, 2000, "LIKE?", r.getFont("Proxima Nova Rg"), 1000 )
+					 .attr({ 'Set text-anchor':'middle', title: 'phillip', opacity: 0 }),
+				 pause: 1000
+			 },
+			 {
+				 camera: function(){
+					 that.moveCam({ scaleX:25, scaleY:25, z:.04 }, cam);
+					 $('svg', that.el).animate({
+					 	height: '125px'
+					 })
+					 that.trigger('done');
+				 }
+ 				
+			 },
+ 			
 		];
 		
 		queue.forEach(function(scene){
@@ -103,11 +102,7 @@ App.View.Intro = Backbone.View.extend({
 				}
 			}, pause);	
 		};
-		
-		audiojs.events.ready(function() {
-	    	var as = audiojs.createAll();
-	    	run();
-	 	 });
+		run();
 	},
 	
 	moveCam: function(args, cam){
