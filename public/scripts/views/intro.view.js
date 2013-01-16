@@ -26,13 +26,12 @@ App.View.Intro = Backbone.View.extend({
 					'.'+word.name, 
 					{ 
 						name: word.name, 
-						style: 'display: none; position: relative; font-size: {fontSize}px; top: {top}px; left: {left}px'.supplant(word)
+						style: 'visibility: hidden; position: relative; font-size: {fontSize}px; top: {top}px; left: {left}px'.supplant(word)
 					}, 
 					word.text
 				]
 			}), [
 				['.hugo-stiglitz', 	{ name: 'stiglitz'}],
-				['audio', { src:'/assets/WhatDoes.mp3', autoplay:'null'} ]
 			])
 		];
 	},
@@ -41,10 +40,17 @@ App.View.Intro = Backbone.View.extend({
 		var kapi = new Kapi();
 		
 		var words = $(frame).children();
+		
+		var whatDoesSound = new buzz.sound('/assets/WhatDoes.mp3');
 
 		// Actors
-		var cam 	= new Kapi.DOMActor(frame);
+		var cam 	= new Kapi.DOMActor(frame, {'setup': function(){
+			console.log('test');
+		}});
 		kapi.addActor(cam);
+		
+		var stiglitz = new Kapi.DOMActor($('.hugo-stiglitz', frame)[0]);
+		kapi.addActor(stiglitz);
 		
 		var actors = {};
 		
@@ -55,44 +61,45 @@ App.View.Intro = Backbone.View.extend({
 		
 		// Camera Movement
 		cam
-			.keyframe(0,{
+			.keyframe(500,{
 				scale: 15,
 				translateX: '3100px',
 				//translateY: '-50px',
 				display	: 'block'
 			})
-			.keyframe(300,{
+			.keyframe(800,{
 				scale: 15,
 				translateX: '3100px',
 				translateY: '-150px',
 			})
-			.keyframe(500,{
+			.keyframe(1000,{
 				scale: 5,
 				translateX: '1000px',
 			})
-			.keyframe(700,{
+			.keyframe(1200,{
 				scale: 2,
 				translateX: '-300px',
 			})
-			.keyframe(2900,{
+			.keyframe(3400,{
 				scale: 2,
 				translateX: '-300px',
 			})
-			.keyframe(3000,{
+			.keyframe(3500,{
 				scale: 1,
 				translateX: '-350px',
 			});
 		
 		// When to Bring the actors onto set
-		actors.what.keyframe		(100,	{ x : 0, 'display' : 'block'}).keyframe(300,{x : 0,});
-		actors.what.keyframe		(100,	{ x : 0, 'display' : 'block'}).keyframe(300,{x : 0,});
-		actors.does.keyframe		(300,	{ x : 0, 'display' : 'block'}).keyframe(500,{x : 0,});
-		actors.phillip.keyframe		(500,	{ x : 0, 'display' : 'block'}).keyframe(1000,{x : 0,});
-		actors.epstein.keyframe		(1000,	{ x : 0, 'display' : 'block'}).keyframe(2000,{x : 0,});
-		actors.look.keyframe		(2000,	{ x : 0, 'display' : 'block'}).keyframe(2500,{x : 0,});
-		actors.like.keyframe		(2500,	{ x : 0, 'display' : 'block'}).keyframe(3000,{x : 0,});
+		actors.what.keyframe		(600,	{ x : 0, 'visibility' : 'visible'}).keyframe(800,{x : 0,});
+		actors.does.keyframe		(800,	{ x : 0, 'visibility' : 'visible'}).keyframe(1000,{x : 0,});
+		actors.phillip.keyframe		(1000,	{ x : 0, 'visibility' : 'visible'}).keyframe(1500,{x : 0,});
+		actors.stiglitz.keyframe	(1000,	{ x : 0, 'visibility' : 'visible'}).keyframe(1500,{x : 0,});
+		actors.epstein.keyframe		(1500,	{ x : 0, 'visibility' : 'visible'}).keyframe(2500,{x : 0,});
+		actors.look.keyframe		(2500,	{ x : 0, 'visibility' : 'visible'}).keyframe(3000,{x : 0,});
+		actors.like.keyframe		(3000,	{ x : 0, 'visibility' : 'visible'}).keyframe(3500,{x : 0,});
 		
 		kapi.play(1);
+		whatDoesSound.play();
 
 	},
 		
