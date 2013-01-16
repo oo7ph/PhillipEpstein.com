@@ -1,131 +1,99 @@
 App.View.Intro = Backbone.View.extend({	
 	
+	initialize: function(){
+		this.ratioW 	= (window.innerWidth)/1527;
+		this.ratioH		= (window.innerHeight)/ 877;
+	},
+	
 	build: function(){
-		var that = this;
-		return ['.intro', { render: that.renderIntro.bind(this) },[
-			['audio', { src:'/assets/WhatDoes.mp3', autoplay:'null'} ]
-		]];
-	},
-	
-	renderIntro: function (el) {
-		var that = this;
-		canvasW = (window.innerWidth);
-		canvasH = (window.innerHeight);
-		r = Raphael(el, canvasW, canvasH);
-		cam = r.set();	
-		initCamSettings = { transform: 's 1' };
 		
-		var queue = [
-		//What
-			{
-				actor: r.print(canvasW/8,canvasH/2, "WHAT", r.getFont("Proxima Nova Rg"), 400)
-					.attr({ 'text-anchor':'start', title: 'what', opacity: 0 }),
-				pause: 200
-			},
-			{
-				camera: function(){that.moveCam({y:-500,  z:.5 }, cam)}
-				
-			},
-		//does
-			{
-				actor: r.print(-400, 850, "does", r.getFont("Proxima Nova Rg"), 1000)
-					.attr({ 'text-anchor':'start', title: 'does', opacity: 0 }),
-					//.attr({ transform: 't -10, 200' }),
-				pause: 200
-			},
-			// {
-				// actor: r.rect(-1500, 0, 1000, '10000')
-				// .attr({fill:'black'}),
-				// pause: 200
-			// },
-			 {
-				 camera: function(){that.moveCam({ x: -4500, z:.15 }, cam)}
- 				
-			 },
-			
-		  //Phillip
-			 {
-				 actor: r.print(2000, 850, "Phillip", r.getFont("Proxima Nova Rg"), 1000 )
-					 .attr({ 'Set text-anchor':'middle', title: 'phillip', opacity: 0 }),
-				 pause: 500
-			 },
-			// Epstein
-			 {
-				 actor: r.print(5000, 850, "Epstein", r.getFont("Proxima Nova Rg"), 1000 )
-					 .attr({ 'Set text-anchor':'middle', title: 'phillip', opacity: 0 }),
-				 pause: 1000
-			 },
-			// Phillip
-			 {
-				 actor: r.print(5000, 2000, "LOOK", r.getFont("Proxima Nova Rg"), 1000 )
-					 .attr({ 'Set text-anchor':'middle', title: 'phillip', opacity: 0 }),
-				 pause: 500
-			 },
-			 // Epstein
-			 {
-				 actor: r.print(8000, 2000, "LIKE?", r.getFont("Proxima Nova Rg"), 1000 )
-					 .attr({ 'Set text-anchor':'middle', title: 'phillip', opacity: 0 }),
-				 pause: 1000
-			 },
-			 {
-				 camera: function(){
-					 that.moveCam({ scaleX:25, scaleY:25, z:.04 }, cam);
-					 $('svg', that.el).animate({
-					 	height: '125px'
-					 })
-					 that.trigger('done');
-				 }
- 				
-			 },
- 			
+		var words = [
+			{name: 'what', 		fontSize: 30, top: -5, left: 0, text: 'WHAT'},
+			{name: 'does', 		fontSize: 70, top: 23, left: -35, text: 'does'},
+			{name: 'phillip', 	fontSize: 70, top: 23, left: 135, text: 'Phillip'},
+			{name: 'epstein', 	fontSize: 70, top: 23, left: 335, text: 'Epstein'} ,
+			{name: 'look', 		fontSize: 70, top: 100, left: 337, text: 'LOOK'},
+			{name: 'like', 		fontSize: 70, top: 100, left: 540, text:'LIKE?'},
+		]
+		
+		
+		var that = this;
+		return ['.intro', { render: function(frame){
+				that.renderIntro(frame);	
+			}},
+			[].concat(words.map(function(word){
+				return [
+					'.'+word.name, 
+					{ 
+						name: word.name, 
+						style: 'display: none; position: relative; font-size: {fontSize}px; top: {top}px; left: {left}px'.supplant(word)
+					}, 
+					word.text
+				]
+			}), [
+				['.hugo-stiglitz', 	{ name: 'stiglitz'}],
+				['audio', { src:'/assets/WhatDoes.mp3', autoplay:'null'} ]
+			])
 		];
-		
-		queue.forEach(function(scene){
-			if(scene.actor){
-				cam.push(scene.actor);
-			}
-		});
-		var pos = 0;
-		var run = function(){
-			var pause = queue[pos].pause ? queue[pos].pause : 0;
-			if(queue[pos].actor){
-				queue[pos].actor.attr({ opacity:1 });
-			}
-			if(queue[pos].camera){
-				queue[pos].camera();
-			}
-			
-			setTimeout(function(){
-				pos = ++pos;
-				if(queue[pos]){
-					run();
-				}
-			}, pause);	
-		};
-		run();
 	},
 	
-	moveCam: function(args, cam){
-		defaults = {
-			x: 0,
-			y: 0,
-			z: 1,
-			ms: 100,
-			scaleX: window.innerWidth/2,
-			scaleY: window.innerHeight/2
-		};
-		args = _.extend(defaults, args);
-		cam.forEach(function(scene){
-			var prevTransform = scene.attr('transform').join(', ');
-			// var transform = '{3}t, {0}, {1}, s, {2},{2}, {4},{5} '.supplant([args.x, args.y, args.z, prevTransform ? prevTransform + ', ' : '',window.innerWidth/2,window.innerHeight/2]);
-			var transform = '{s, {2}, {2}, {4}, {5}, t, {0}, {1},'.supplant([args.x, args.y, args.z, prevTransform ? prevTransform + ', ' : '', args.scaleX, args.scaleY]);
-			scene.animate(
-				{transform: transform},
-				args.ms, 
-				'<>'
-			);
-		})
+	renderIntro: function(frame){
+		var kapi = new Kapi();
 		
+		var words = $(frame).children();
+
+		// Actors
+		var cam 	= new Kapi.DOMActor(frame);
+		kapi.addActor(cam);
 		
+		var actors = {};
+		
+		words.each(function(i, word){
+			actors[$(word).attr('name')] = new Kapi.DOMActor(word);
+			kapi.addActor(actors[$(word).attr('name')]);
+		});
+		
+		// Camera Movement
+		cam
+			.keyframe(0,{
+				scale: 15,
+				translateX: '3100px',
+				//translateY: '-50px',
+				display	: 'block'
+			})
+			.keyframe(300,{
+				scale: 15,
+				translateX: '3100px',
+				translateY: '-150px',
+			})
+			.keyframe(500,{
+				scale: 5,
+				translateX: '1000px',
+			})
+			.keyframe(700,{
+				scale: 2,
+				translateX: '-300px',
+			})
+			.keyframe(2900,{
+				scale: 2,
+				translateX: '-300px',
+			})
+			.keyframe(3000,{
+				scale: 1,
+				translateX: '-350px',
+			});
+		
+		// When to Bring the actors onto set
+		actors.what.keyframe		(100,	{ x : 0, 'display' : 'block'}).keyframe(300,{x : 0,});
+		actors.what.keyframe		(100,	{ x : 0, 'display' : 'block'}).keyframe(300,{x : 0,});
+		actors.does.keyframe		(300,	{ x : 0, 'display' : 'block'}).keyframe(500,{x : 0,});
+		actors.phillip.keyframe		(500,	{ x : 0, 'display' : 'block'}).keyframe(1000,{x : 0,});
+		actors.epstein.keyframe		(1000,	{ x : 0, 'display' : 'block'}).keyframe(2000,{x : 0,});
+		actors.look.keyframe		(2000,	{ x : 0, 'display' : 'block'}).keyframe(2500,{x : 0,});
+		actors.like.keyframe		(2500,	{ x : 0, 'display' : 'block'}).keyframe(3000,{x : 0,});
+		
+		kapi.play(1);
+
 	},
+		
 });
