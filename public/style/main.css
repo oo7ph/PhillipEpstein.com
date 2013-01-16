@@ -13,97 +13,33 @@ body {
   font-style: normal;
 }
 .intro {
-  width: 500px;
-  margin: 20% auto;
-  list-style-type: none;
+  z-index: 1;
+}
+list-style-type none {
   font-weight: bold;
   line-height: 0;
-/*.what
-		display none
-		position relative
-		font-size 30px
-		top -5px
-	.does
-		display none
-		position relative
-		top 23px
-		left -35px
-		font-size 70px
-	.phillip
-		display none
-		position relative
-		top 23px
-		left 135px
-		font-size 70px
-	.epstein
-		display none
-		position relative
-		top 23px
-		left 335px
-		font-size 70px
-	.look
-		display none
-		position relative
-		top 100px
-		left 337px
-		font-size 70px
-	.like
-		display none
-		position relative
-		top 100px
-		left 540px
-		font-size 70px*/
+}
+.dark-tower {
+  position: absolute;
+  margin: 0 0 0 25%;
+  background-image: url("/assets/DarkTower.png");
+  background-repeat: no-repeat;
+  background-origin: border-box;
+  width: 90%;
+  height: 100%;
+  display: none;
 }
 .hugo-stiglitz {
-  float: left;
   background-image: url("/assets/HugoStiglitz.png");
-  background-size: 100%;
-  background-origin: border-box;
-  width: 2000px;
-  height: 1500px;
-  visibility: hidden;
-}
-.audiojs {
-  display: none;
-}
-.myself {
-  display: none;
-}
-.myself .intro {
-  font-weight: bold;
-}
-.button {
-  padding: 2px 10px;
-  background: #6b6969;
-  height: 28px;
-  color: #fff;
-  font-size: 18px;
-}
-.button-section > a {
-  margin: 10px 10px;
-}
-.nav {
-  float: left;
-  height: 400px;
-  border-left: solid;
-  display: none;
-  position: relative;
-  list-style-type: none;
-  font-size: 22px;
-}
-.nav ol {
   position: absolute;
-  bottom: 0;
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-origin: border-box;
+  width: 50px;
+  height: 150px;
+  margin: 50% 0 0 25%;
 }
-li.current {
-  margin: 0;
-  background: #000;
-  color: #fff;
-}
-.main-content {
-  float: left;
-  margin: 50px auto;
-}
+/*
+.main-content
+    float left
+    margin: 50px auto*/

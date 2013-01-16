@@ -5,8 +5,14 @@ App.View.Dashboard = Backbone.View.extend({
 	},
 	
 	build: function(){
-		return ['fragment', [
-			this.introView,
+		var that = this;
+		return ['.main', [
+			this.introView.bind('done', function(){
+				$('.dark-tower', that.el).toggle();
+			}),
+			['section.dark-tower',[
+				['section.hugo-stiglitz']
+			]]
 		]]
 	},
 });
