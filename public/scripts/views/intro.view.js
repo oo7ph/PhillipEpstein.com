@@ -72,10 +72,10 @@ App.View.Intro = Backbone.View.extend({
 			 },
 			 {
 				 camera: function(){
-					 that.moveCam({ scaleX:40, scaleY:25, z:.12 }, cam);
+					 that.moveCam({ scaleX:40, scaleY:25, z:.06 }, cam);
 					 that.trigger('done');
 					 $('svg', that.el).animate({
-					 	height: '300px',
+					 	height: window.innerHeight *.24,
 					 })
 				 }
  				
