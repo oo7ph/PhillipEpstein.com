@@ -17,11 +17,11 @@ App.View.Intro = Backbone.View.extend({
 		r = Raphael(el, canvasW, canvasH);
 		cam = r.set();	
 		initCamSettings = { transform: 's 1' };
-		
+
 		var queue = [
 		//What
 			{
-				actor: r.print(canvasW/8,canvasH/2, "WHAT", r.getFont("Proxima Nova Rg"), 400)
+				actor: r.print(canvasW/8,canvasH/2, "WHAT", r.getFont("Proxima Nova Rg"), .35 * canvasH )
 					.attr({ 'text-anchor':'start', title: 'what', opacity: 0 }),
 				pause: 200
 			},
@@ -31,16 +31,11 @@ App.View.Intro = Backbone.View.extend({
 			},
 		//does
 			{
-				actor: r.print(-400, 850, "does", r.getFont("Proxima Nova Rg"), 1000)
+				actor: r.print(-canvasH * .410, canvasH * .873, "does", r.getFont("Proxima Nova Rg"), canvasH)
 					.attr({ 'text-anchor':'start', title: 'does', opacity: 0 }),
 					//.attr({ transform: 't -10, 200' }),
 				pause: 200
 			},
-			// {
-				// actor: r.rect(-1500, 0, 1000, '10000')
-				// .attr({fill:'black'}),
-				// pause: 200
-			// },
 			 {
 				 camera: function(){that.moveCam({ x: -4500, z:.15 }, cam)}
  				
@@ -48,26 +43,26 @@ App.View.Intro = Backbone.View.extend({
 			
 		  //Phillip
 			 {
-				 actor: r.print(2000, 850, "Phillip", r.getFont("Proxima Nova Rg"), 1000 )
+				 actor: r.print(canvasH * 2.053, canvasH * .873, "Phillip", r.getFont("Proxima Nova Rg"), canvasH )
 					 .attr({ 'Set text-anchor':'middle', title: 'phillip', opacity: 0 }),
 				 pause: 500
 			 },
 			// Epstein
 			 {
-				 actor: r.print(5000, 850, "Epstein", r.getFont("Proxima Nova Rg"), 1000 )
-					 .attr({ 'Set text-anchor':'middle', title: 'phillip', opacity: 0 }),
+				 actor: r.print(canvasH * 5.133, canvasH * .873, "Epstein", r.getFont("Proxima Nova Rg"), canvasH )
+					 .attr({ 'Set text-anchor':'middle', title: 'epstein', opacity: 0 }),
 				 pause: 1000
 			 },
-			// Phillip
+			// LOOK
 			 {
-				 actor: r.print(5000, 2000, "LOOK", r.getFont("Proxima Nova Rg"), 1000 )
-					 .attr({ 'Set text-anchor':'middle', title: 'phillip', opacity: 0 }),
+				 actor: r.print(canvasH * 5.133, canvasH * 2.053, "LOOK", r.getFont("Proxima Nova Rg"), canvasH )
+					 .attr({ 'Set text-anchor':'middle', title: 'look', opacity: 0 }),
 				 pause: 500
 			 },
-			 // Epstein
+			 // LIKE?
 			 {
-				 actor: r.print(8000, 2000, "LIKE?", r.getFont("Proxima Nova Rg"), 1000 )
-					 .attr({ 'Set text-anchor':'middle', title: 'phillip', opacity: 0 }),
+				 actor: r.print(canvasH * 8.213, canvasH * 2.053, "LIKE?", r.getFont("Proxima Nova Rg"), canvasH )
+					 .attr({ 'Set text-anchor':'middle', title: 'like', opacity: 0 }),
 				 pause: 1000
 			 },
 			 {
@@ -75,7 +70,7 @@ App.View.Intro = Backbone.View.extend({
 					 that.moveCam({ scaleX:40, scaleY:25, z:.06 }, cam);
 					 that.trigger('done');
 					 $('svg', that.el).animate({
-					 	height: window.innerHeight *.24,
+					 	height: canvasH *.24,
 					 })
 				 }
  				
