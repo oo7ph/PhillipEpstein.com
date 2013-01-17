@@ -26,7 +26,7 @@ App.View.Intro = Backbone.View.extend({
 				pause: 200
 			},
 			{
-				camera: function(){that.moveCam({y:-500,  z:.5 }, cam)}
+				camera: function(){that.moveCam({y:-canvasH*.513,  z:.5 }, cam)}
 				
 			},
 		//does
@@ -37,7 +37,7 @@ App.View.Intro = Backbone.View.extend({
 				pause: 200
 			},
 			 {
-				 camera: function(){that.moveCam({ x: -4500, z:.15 }, cam)}
+				 camera: function(){that.moveCam({ x: -canvasW*2.735, z:.15 }, cam)}
  				
 			 },
 			
