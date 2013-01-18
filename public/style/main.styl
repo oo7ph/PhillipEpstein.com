@@ -1,5 +1,15 @@
+/******************************
+ * Functions
+ ******************************/
+vendor(prop, args)
+  -webkit-{prop} args
+  -moz-{prop} args
+  -o-{prop} args
+  {prop} args
+
 body
     margin 0
+    padding 0
     background #4B4B4B url(/assets/paperBg.jpg)
     font-size 16px
     line-height 1.4
@@ -11,35 +21,82 @@ body
 	src url('/assets/fonts/proximanova-regular-webfont.eot?#iefix') format('embedded-opentype'),url('/assets/fonts/proximanova-regular-webfont.woff'),url('/assets/fonts/proximanova-regular-webfont.ttf') format('truetype'),url('/assets/fonts/proximanova-regular-webfont.svg#ProximaNovaRgRegular') format('svg');
 	font-weight normal
 	font-style normal
-	
-.intro
-    z-index 1
-	list-style-type none
-	font-weight bold
-	line-height 0
 
+/*Might drop these*/
+.container
+    width 960px
+    margin 10px auto
+    
+.content
+    width 960px
+    height 540px
+
+/**
+ *     SECTIONS
+ */
+section
+    width 960px
+    height 540px
+    margin-bottom 80px
+    z-index 1
+
+.intro
+    list-style-type none
+    font-weight bold
+    line-height 0
+
+/* Images */
 .dark-tower
-  position absolute
   margin 0 0 0 25%
+  position relative
   background-image url(/assets/DarkTower.png);
   background-repeat no-repeat
   background-size 80%
-  width 100%
-  height 100%
+  width 1000px
+  height 1000px
   display none
 
 .hugo-stiglitz
 	background-image url(/assets/HugoStiglitz.png)
-	position relative
+	position absolute
 	background-size 100%
 	background-repeat no-repeat
 	background-origin border-box 
 	width 4%
 	height 25%
-	margin 25% 0 0 20%
+	top 240px
+	left 165px
+
+.test1
+    background-color blue
+    opacity 0.5
+.test2
+    background-color red
+    opacity 0.5
 	
-    
+/* absolute positioning */
+.csstransforms 
+    .container 
+        position relative
+    section
+        position absolute
+    .content
+        position absolute
 /*
-.main-content
-    float left
-    margin: 50px auto*/
+ * Zoom Ratios
+ */
+
+.csstransforms 
+    .intro
+        vendor(transform, scale(1))
+    /* level index 1: (1/3) ^ 1 = 1/3 = 0.3333 */
+    .who-is
+        vendor(transform, scale(.3333))
+    /* level index 2: (1/3) ^ 2 ) = 1/9 = 0.1111 */
+    .test1
+        vendor(transform, scale(.1111))
+    /* level index 3: (1/3) ^ 3 = 1/27 = 0.0370 */
+    .test2
+        vendor(transform, scale(.037))
+    .content
+       // vendor(transform, scale(3))

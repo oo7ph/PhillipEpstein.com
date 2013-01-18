@@ -1,36 +1,36 @@
 App.View.Dashboard = Backbone.View.extend({
 	
 	initialize: function(){
-		this.introView = new App.View.Intro({
-			id: 'intro'
-		});
+		this.introView = new App.View.Intro();
 	},
 	
 	build: function(){
 		var that = this;
 		
-		return ['.main',{ render: function(){
-			// var pageInception = new inception();
-// 	
-			// pageInception.$content = $('.main');
-		 	// pageInception.$nav = $('#nav');
-		
-		  	// var $body = $('body'), iOSclass = isIOS ? 'ios' : 'no-ios';
-// 		
-		  	// $body.addClass( iOSclass );
-		
-			// if ( Modernizr.csstransforms ) {
-				// $('.page-nav').each(function(){
-					// this.addEventListener( 'click', pageInception, false );
-				// });
-			  // }
-		}},[
-			this.introView.bind('done', function(){
-				$('.dark-tower', that.el).toggle();
-			}),
-			['section.dark-tower',{ id:'darkTower' }, [
-				['section.hugo-stiglitz']
+		return ['.wrap',[
+			['.container', [
+				['ul.nav',[
+					//['li a', { href:'#intro' }, 'Phillip Epstein'],
+					//['li a', { href:'#who-is' }, 'Who Is He?'],
+				]],
+				['.content',[
+					['section.intro',[
+						this.introView.bind('done', function(){
+							$('.dark-tower', that.el).toggle();
+						}),
+						['test0']
+					]],
+					['section.who-is',[
+						['.dark-tower .hugo-stiglitz']
+					]],
+					['section.test1',[
+						['.test1']
+					]],
+					['section.test2',[
+						['.test2']
+					]],
+				]],
 			]]
-		]]
+		]];
 	},
 });

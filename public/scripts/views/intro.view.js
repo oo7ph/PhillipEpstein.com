@@ -1,5 +1,4 @@
 App.View.Intro = Backbone.View.extend({	
-	tagName: 'section',
 	
 	initialize: function(){
 		this.whatDoesSound = new buzz.sound('/assets/WhatDoes.mp3');
