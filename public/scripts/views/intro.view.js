@@ -36,7 +36,7 @@ App.View.Intro = Backbone.View.extend({
 				pause: 200
 			},
 			 {
-				 camera: function(){that.moveCam({ x: -canvasW*2.735, z:.15 }, cam)}
+				 camera: function(){that.moveCam({ x: -canvasW*2.735, z:.12 }, cam)}
  				
 			 },
 			

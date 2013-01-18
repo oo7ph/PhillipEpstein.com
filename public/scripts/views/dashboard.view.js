@@ -26,7 +26,10 @@ App.View.Dashboard = Backbone.View.extend({
 							['test0']
 						]],
 						['section.who-is',[
-							['.dark-tower .hugo-stiglitz']
+							['.dark-tower',[
+								['.hugo-stiglitz'],
+								['.tv'],
+							]]
 						]],
 						['section.test1',[
 							['.test1']

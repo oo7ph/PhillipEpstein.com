@@ -22,12 +22,12 @@ body
 	font-style normal
 
 /*Might drop these*/
-.container
-    width 960px
-    margin 10px auto
+/*.container
+    width 900px
+    margin 10px auto*/
     
 .content
-    width 960px
+    width 900px
     height 540px
     
 .background
@@ -44,7 +44,7 @@ body
  *     SECTIONS
  */
 section
-    width 960px
+    width 900px
     height 540px
     margin-bottom 80px
     z-index 1
@@ -78,6 +78,17 @@ section
 	top 245px
 	left 165px
 
+.tv
+    background-image url(/assets/tv.png)
+    position absolute
+    background-size 100%
+    background-repeat no-repeat
+    background-origin border-box 
+    width 7%
+    height 25%
+    top 255px
+    left 200px
+
 .test1
     // background-color blue
     opacity 0.5
@@ -100,6 +111,8 @@ section
 .csstransforms 
     .intro
         vendor(transform, scale(1))
+        top 0
+        y 0
     /* level index 1: (1/3) ^ 1 = 1/3 = 0.3333 */
     .who-is
         //vendor(transform, scale(.3333))
