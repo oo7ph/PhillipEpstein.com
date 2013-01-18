@@ -4,7 +4,6 @@
 body {
   margin: 0;
   padding: 0;
-  background: #4b4b4b url("/assets/paperBg.jpg");
   font-size: 16px;
   line-height: 1.4;
   font-family: ProximaNovaRgRegular;
@@ -25,6 +24,16 @@ body {
   width: 960px;
   height: 540px;
 }
+.background {
+  background: #4b4b4b url("/assets/paperBg.jpg");
+  width: 100%;
+  position: fixed;
+  height: 100%;
+}
+.wrap {
+  position: fixed;
+  width: 100%;
+}
 /**
  *     SECTIONS
  */
@@ -38,6 +47,7 @@ section {
   list-style-type: none;
   font-weight: bold;
   line-height: 0;
+  z-index: 2;
 }
 /* Images */
 .dark-tower {
@@ -58,15 +68,13 @@ section {
   background-origin: border-box;
   width: 4%;
   height: 25%;
-  top: 240px;
+  top: 245px;
   left: 165px;
 }
 .test1 {
-  background-color: #00f;
   opacity: 0.5;
 }
 .test2 {
-  background-color: #f00;
   opacity: 0.5;
 }
 /* absolute positioning */
@@ -88,12 +96,6 @@ section {
   -o-transform: scale(1);
   transform: scale(1);
 }
-.csstransforms .who-is {
-  -webkit-transform: scale(0.3333);
-  -moz-transform: scale(0.3333);
-  -o-transform: scale(0.3333);
-  transform: scale(0.3333);
-}
 .csstransforms .test1 {
   -webkit-transform: scale(0.1111);
   -moz-transform: scale(0.1111);
@@ -105,4 +107,13 @@ section {
   -moz-transform: scale(0.037);
   -o-transform: scale(0.037);
   transform: scale(0.037);
+}
+.csstransforms .scroller {
+  height: 4000px;
+}
+.csstransitions .content {
+  -webkit-transition: -webkit-transform 1s;
+  -moz-transition: -moz-transform 1s;
+  -o-transition: -o-transform 1s;
+  transition: transform 1s;
 }
