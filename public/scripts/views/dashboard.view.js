@@ -17,7 +17,7 @@ App.View.Dashboard = Backbone.View.extend({
 						//['li a', { href:'#who-is' }, 'Who Is He?'],
 					]],
 					['.content', { render: function(content){
-						inception.init(content, 0, 2);
+						inception.init(content, 0, 3);
 					} },[
 						['section.intro',[
 							this.introView.bind('done', function(){
@@ -31,8 +31,7 @@ App.View.Dashboard = Backbone.View.extend({
 								['.tv'],
 							]]
 						]],
-						['section.test1',[
-							['.test1']
+						['section.tech',[
 						]],
 						['section.test2',[
 							['.test2']

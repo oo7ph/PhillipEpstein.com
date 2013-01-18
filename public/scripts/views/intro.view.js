@@ -99,7 +99,7 @@ App.View.Intro = Backbone.View.extend({
 				}
 			}, pause);	
 		};
-		this.whatDoesSound.play();
+		// this.whatDoesSound.play();
 		run();
 	},
 	
