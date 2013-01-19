@@ -3,7 +3,9 @@ App.View.Dashboard = Backbone.View.extend({
 	className: 'main',
 	
 	initialize: function(){
-		this.introView = new App.View.Intro();
+		this.introView = new App.View.Intro({
+			className: 'intro-text'
+		});
 	},
 	
 	build: function(){
@@ -17,25 +19,22 @@ App.View.Dashboard = Backbone.View.extend({
 						//['li a', { href:'#who-is' }, 'Who Is He?'],
 					]],
 					['.content', { render: function(content){
-						inception.init(content, 0, 3);
+						inception.init(content, 0, 7);
 					} },[
 						['section.intro',[
 							this.introView.bind('done', function(){
 								$('.dark-tower', that.el).toggle();
+								$('.who-is', that.el).toggle();
+								$('.tech', that.el).toggle();
 							}),
-							['test0']
+							['.dark-tower']
 						]],
 						['section.who-is',[
-							['.dark-tower',[
-								['.hugo-stiglitz'],
-								['.tv'],
-							]]
+							['.hugo-stiglitz'],
+							['.tv'],
 						]],
-						['section.tech',[
-						]],
-						['section.test2',[
-							['.test2']
-						]],
+						['section.tech'],
+						['section.ecommerce'],
 					]],
 				]]
 			]],

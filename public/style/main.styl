@@ -54,9 +54,19 @@ section
     list-style-type none
     font-weight bold
     line-height 0
-    z-index 2
+
+.who-is
+    display none
+   
+.tech
+    display none
 
 /* Images */
+
+.intro-text
+    position absolute
+    z-index 1
+
 .dark-tower
   margin 0 0 0 25%
   position relative
@@ -65,18 +75,17 @@ section
   background-size 80%
   width 1000px
   height 1000px
+  margin -5% 0 0 25%
   display none
 
-.hugo-stiglitz
+/*.hugo-stiglitz
 	background-image url(/assets/HugoStiglitz.png)
 	position absolute
 	background-size 100%
 	background-repeat no-repeat
 	background-origin border-box 
-	width 4%
-	height 25%
-	top 245px
-	left 165px
+	width 329px
+	height 999px*/
 
 .tv
     background-image url(/assets/tv.png)
@@ -84,10 +93,8 @@ section
     background-size 100%
     background-repeat no-repeat
     background-origin border-box 
-    width 7%
-    height 25%
-    top 255px
-    left 200px
+    width 900px
+    height 540px
     
 .tech
     background-image url(/assets/servers.png)
@@ -95,11 +102,17 @@ section
     background-size 100%
     background-repeat no-repeat
     background-origin border-box 
-    width 1024px
-    height 681px
-    top -60px
-    left -56px
-    opacity .7
+    width 900px
+    height 540px
+    
+.ecommerce
+    background-image url(/assets/warehouse.png)
+    position absolute
+    background-size 100%
+    background-repeat no-repeat
+    background-origin border-box 
+    width 900px
+    height 540px
 
 
 	
@@ -118,17 +131,12 @@ section
 .csstransforms 
     .intro
         vendor(transform, scale(1))
-        top 0
-        y 0
-    /* level index 1: (1/3) ^ 1 = 1/3 = 0.3333 */
     .who-is
-        //vendor(transform, scale(.3333))
-    /* level index 2: (1/3) ^ 2 ) = 1/9 = 0.1111 */
+        vendor(transform, scale(.1666))
     .tech
-        vendor(transform, scale(.04))
-    /* level index 3: (1/3) ^ 3 = 1/27 = 0.0370 */
-    .test2
-        vendor(transform, scale(.037))
+        vendor(transform, scale(.0277))
+    .ecommerce
+        vendor(transform, scale(.00077160493))
     .scroller
     	height 4000px
 
